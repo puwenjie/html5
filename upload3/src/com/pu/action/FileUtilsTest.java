@@ -1,4 +1,4 @@
-package test;
+package com.pu.action;
 
 import java.io.IOException;
 import java.util.List;
