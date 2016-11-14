@@ -42,7 +42,11 @@ public class DeCompressUtil {
        Archive a = null;   
        FileOutputStream fos = null;   
        try{   
-           a = new Archive(new File(sourceRar));   
+           a = new Archive(new File(sourceRar));
+           
+           //测试是否可以输出文件的名称
+           System.out.print(a.toString()+"名称");
+           
            FileHeader fh = a.nextFileHeader();   
            while(fh!=null){   
                if(!fh.isDirectory()){   

@@ -31,12 +31,13 @@ public class UploadFile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String uploadpath = "upload";// 文件上传地址
 	private String unpackpath = "";
-	private long maxSize = 100 * 1024 * 1024;// 最大文件大小100M
+	private long maxSize = 10 * 1024 * 1024;// 最大文件大小100M
 	private String limitfile = "zip,rar";// 限制上传类型doc,docx,xls,xlsx,ppt,htm,html,txt,
 	private Gson gson = new Gson();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println("dayongdsads");
 		try {
 			req.setCharacterEncoding("UTF-8");
 			resp.setContentType("text/html; charset=UTF-8");
@@ -46,7 +47,7 @@ public class UploadFile extends HttpServlet {
 			if (upid!=null&&state != null && upid.equals(state.getId())) {
 				s = gson.toJson(state);
 			}
-			System.out.println(state+" GET："+upid+"_"+s);
+			//System.out.println(state+" GET："+upid+"_"+s);
 			PrintWriter out = resp.getWriter();
 			out.write(s);
 			out.flush();
