@@ -1,6 +1,8 @@
 package com.pu.service;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GetFileList {
 
@@ -9,19 +11,17 @@ public class GetFileList {
 	 * 时间：2016年11月14日
 	 * @author pu
 	 */
-//    public static void main(String[] args) {
-//        getFileName("d/jexo");
-	     
-//    }
 
-    public  void getFileName(String path) {
-    	
+
+    public static List<String> getFileName(String path) {
+    	List<String> result=new ArrayList<String>();
     	System.out.print(path+"这是路径");
         //"../upload"; // 路径
         File f = new File(path);
         if (!f.exists()) {
             System.out.println(path + " not exists");
-            return;
+            result.add(path + " not exists");
+            return result;
         }
 
         File fa[] = f.listFiles();
@@ -29,9 +29,12 @@ public class GetFileList {
             File fs = fa[i];
             if (fs.isDirectory()) {
                 System.out.println(fs.getName() + " [目录]");
+                result.add(fs.getName());
             } else {
                 System.out.println(fs.getName());
+                result.add(fs.getName());
             }
         }
+		return result;
     }
 }
