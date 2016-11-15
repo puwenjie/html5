@@ -11,7 +11,7 @@
   
     <servlet>
     <servlet-name>FileUtilsTest</servlet-name>
-    <servlet-class>test.FileUtilsTest</servlet-class>
+    <servlet-class>com.pu.action.FileUtilsTest</servlet-class>
   </servlet>
    <servlet-mapping>
     <servlet-name>FileUtilsTest</servlet-name>

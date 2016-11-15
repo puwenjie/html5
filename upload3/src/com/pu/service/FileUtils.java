@@ -21,7 +21,12 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
+/*
+ * 功能：上传文件和下载文件的接口功能
+ * 时间：2016年11月14日
+ * 人员：pu
+ *  
+ */
 public class FileUtils {
 
 	private FileUtils() {
