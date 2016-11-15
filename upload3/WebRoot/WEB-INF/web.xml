@@ -13,9 +13,24 @@
     <servlet-name>FileUtilsTest</servlet-name>
     <servlet-class>com.pu.action.FileUtilsTest</servlet-class>
   </servlet>
+  <servlet>
+  <!-- 指定DWR核心servelet的名字 -->
+  <servlet-name>dwr-invoker</servlet-name>
+  <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+  <!-- 指定核心的类 -->
+   <init-param>
+      <param-name>debug</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  
+  </servlet>
    <servlet-mapping>
     <servlet-name>FileUtilsTest</servlet-name>
     <url-pattern>/FileUtilsTest</url-pattern>
-    
-  </servlet-mapping>	
+      </servlet-mapping>
+      <!-- dwr的servletmap，可以过滤，让action通过dwr的核心类 -->
+        <servlet-mapping>
+    <servlet-name>dwr-invoker</servlet-name>
+    <url-pattern>/leedwr/*</url-pattern>
+      </servlet-mapping>	
 </web-app>
