@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 /*
  * time:2016年11月15日
  * author:pu
- * 功能获取服务器中文件夹的路径，其中有两个函数，
+ * 功能：获取服务器中文件夹的路径，其中有两个函数，
  * 1，一个函数名为getFilePathzip（）为获取压缩包下载路径
  * 2，一个函数名为getFilepath（）为获取解压后文件夹路径，
  * 

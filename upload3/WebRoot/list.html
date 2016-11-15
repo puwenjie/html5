@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device, initial-scale=1.0" />
+        <title>响应式布局及响应式列表</title>
+        <link rel="stylesheet" href="css/font-awesome.min.css" />
+        <link rel="stylesheet" href="css/list.css" />
+        <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+           <script type='text/javascript' src='/upload3/leedwr/engine.js'></script>
+  <script type='text/javascript' src='/upload3/leedwr/interface/fileList.js'></script>
+    <script type='text/javascript' src='/upload3/leedwr/util.js'></script>
+  <script>
+
+   function cd(data){
+   // alert("nihaodata");
+     $.each(data,function(i,item){
+           var $li=$("<li><a>"+item+"<a></li>");
+           $("ul").append($li);
+           $("a").attr("href",item);   
+             
+     });
+   
+     alert(data[1]);
+  };
+       $(document).ready(function()
+       {
+   // alert("nihao");
+    fileList.getFileName("d:/jexo",cd);  
+    });
+    
+ 
+  </script>
+    </head>
+    <body>
+        <div id="header">
+            <span class="title">列表</span>
+        </div>
+        <div id="content">
+            <ul>
+                <li>
+                  <a>  <span class="title">
+                        <img src="img/1.gif" alt="" />
+                        临时数据
+                    </span></a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <span class="title">
+                        <img src="img/1.gif" alt="" />临时数据
+                    </span>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <span class="title">
+                        <img src="img/1.gif" alt="" />临时数据
+                    </span>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <span class="title">
+                        <img src="img/1.gif" alt="" />临时数据
+                    </span>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <span class="title">
+                        <img src="img/1.gif" alt="" />临时数据
+                    </span>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

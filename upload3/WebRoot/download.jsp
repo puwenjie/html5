@@ -12,7 +12,7 @@
 
    function cd(data){
    // alert("nihaodata");
-     alert(data);
+     alert(data[1]);
   }
        window.onload=function (){
    // alert("nihao");

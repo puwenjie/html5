@@ -27,8 +27,10 @@ public class FileUtilsTest extends HttpServlet {
 			throws ServletException, IOException {
 		//上传文件
 		List<String> filePaths = FileUtils.upload(request, "upload/",10*1024*1024,".zip .rar");
+		
 	//	System.out.println(request.getSession().getServletContext().getRealPath("/")+"upload");
 	//	GetFileList getfilelist=new GetFileList();
+		
 		GetFileList.getFileName(FilePath.getFilePathZip(request)); 
 		System.out.println(filePaths);
 	}
