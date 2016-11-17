@@ -22,9 +22,9 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-public class FileUtils {
+public class FileUtils1 {
 
-	private FileUtils() {
+	private FileUtils1() {
 
 	}
 
@@ -156,6 +156,7 @@ public class FileUtils {
 					if (fileName.indexOf("/") > -1) {
 						SimpleFileName = fileName.substring(fileName
 								.lastIndexOf("/") + 1);
+						
 					}
 
 					// 如果文件类型字符串中包含该后缀名，保存该文件
@@ -167,6 +168,8 @@ public class FileUtils {
 								+ " " + uuid + " " + SimpleFileName;
 						item.write(new File(absoluteFilePath));
 						filePaths.add(absoluteFilePath);
+						
+					//	System.out.print(SimpleFileName+"这是简化的名称");
 					} 
 				}
 			}
@@ -194,7 +197,9 @@ public class FileUtils {
 	 * @return
 	 */
 	public static List<String> upload(HttpServletRequest request, String relativeUploadPath, int maxSize, String fileTypes) {
+		System.out.print("这是简化的名称3");
 		return upload(request, relativeUploadPath, maxSize, 5*1024, fileTypes);
+		
 	}
 	
 	/**

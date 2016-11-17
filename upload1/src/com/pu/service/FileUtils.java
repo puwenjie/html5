@@ -105,9 +105,12 @@ public class FileUtils {
 	 * 也可以写成".jpg/.jpeg/.gif/.png"，类型之间的分隔符是什么都可以，甚至可以不要，<br>
 	 * 直接写成".jpg.jpeg.gif.png"，但是类型前边的"."不能丢
 	 * @return
+	 * serverPath为服务器地址
+	 * 
 	 */
 	public static List<String> upload(HttpServletRequest request, String relativeUploadPath, int maxSize, int thresholdSize, String fileTypes) {
 		// 设置字符编码
+		
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (UnsupportedEncodingException e1) {
@@ -161,6 +164,7 @@ public class FileUtils {
 					if (fileName.indexOf("/") > -1) {
 						SimpleFileName = fileName.substring(fileName
 								.lastIndexOf("/") + 1);
+						
 					}
 
 					// 如果文件类型字符串中包含该后缀名，保存该文件
@@ -172,7 +176,9 @@ public class FileUtils {
 								+ " " + uuid + " " + SimpleFileName;
 						item.write(new File(absoluteFilePath));
 						filePaths.add(absoluteFilePath);
-					} 
+						
+					}
+					System.out.print("这是简化的名称2");
 				}
 			}
 		} catch (FileUploadException e) {
