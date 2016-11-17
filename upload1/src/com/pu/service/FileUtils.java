@@ -32,10 +32,27 @@ public class FileUtils {
 	private FileUtils() {
 
 	}
-
-	public static void download(HttpServletRequest request,
-			HttpServletResponse response, String relativeFilePath) {
-
+//下载压塑包列表文件，获取下载文件的文件名列表到客户端，然后由客户端在将服务器路径+文件名组合为下载地址
+	//, String relativeFilePath历史参数，已删除
+	public static List<String> download(HttpServletRequest request,
+			HttpServletResponse response) {
+		List<String> filezippath = new ArrayList<String>() ;
+		String serverPath = request.getSession().getServletContext().getRealPath("/").replace("\\", "/")+"upload";
+		//return GetFileList.getFileName(serverPath);
+		int j=GetFileList.getFileName(serverPath).size();
+		List<String> filenamelist=GetFileList.getFileName(serverPath);
+		for(int i=0;i<j;i++){
+			String str=serverPath+filenamelist.get(i);
+			filezippath.add(str);
+			
+		}
+		
+		return filezippath;
+		//System.out.print(GetFileList.getFileName(serverPath));
+		
+		
+		
+/*
 		try {
 			request.setCharacterEncoding("UTF-8");
 			response.setCharacterEncoding("UTF-8");
@@ -90,7 +107,7 @@ public class FileUtils {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	/**

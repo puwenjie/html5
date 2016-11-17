@@ -146,14 +146,19 @@ public class FilepathinformDAO extends BaseHibernateDAO {
 	}
 
 	public void attachDirty(Filepathinform instance) {
+		getSession().beginTransaction(); 
 		log.debug("attaching dirty Filepathinform instance");
 		try {
 			getSession().saveOrUpdate(instance);
 			log.debug("attach successful");
 		} catch (RuntimeException re) {
 			log.error("attach failed", re);
+			
 			throw re;
 		}
+		 getSession().getTransaction().commit();    
+		 getSession().flush();    
+		 getSession().close();
 	}
 
 	public void attachClean(Filepathinform instance) {

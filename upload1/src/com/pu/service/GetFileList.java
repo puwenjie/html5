@@ -15,7 +15,7 @@ public class GetFileList {
 
     public static List<String> getFileName(String path) {
     	List<String> result=new ArrayList<String>();
-    	System.out.print(path+"这是路径");
+    	//System.out.print(path+"这是路径");
         //"../upload"; // 路径
         File f = new File(path);
         if (!f.exists()) {
