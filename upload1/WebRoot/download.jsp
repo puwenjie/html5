@@ -10,10 +10,10 @@
   <script type='text/javascript' src='/upload1/leedwr/interface/fileList.js'></script>
     <script type='text/javascript' src='/upload1/leedwr/util.js'></script>
   <script>
-
+//这是一种方法，或者第二种方法用后台setAttribute("data", list);返回给data，前台用foreach去遍历
    function cd(data){
      //alert("nihaodata");
-    // alert(data[1]);
+     alert(data[1]);
   }
        
      $(document).ready(function()
@@ -40,7 +40,13 @@
 <input type="submit" value="下载"></input>
 
 </form>
+<form action="FileImg" method="get" enctype="multipart/form-data">
+   
 
+
+<input type="submit" value="下载"></input>
+
+</form>
 
 
 </body>

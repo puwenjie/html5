@@ -14,6 +14,14 @@
     <servlet-class>com.pu.action.FileUtilsTest</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>ImgUtils</servlet-name>
+    <servlet-class>com.pu.action.ImgUpUtils</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>FileImg</servlet-name>
+    <servlet-class>com.pu.action.FileImgList</servlet-class>
+  </servlet>
+  <servlet>
   <!-- 指定DWR核心servelet的名字 -->
   <servlet-name>dwr-invoker</servlet-name>
   <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
@@ -27,6 +35,14 @@
    <servlet-mapping>
     <servlet-name>FileUtilsTest</servlet-name>
     <url-pattern>/FileUtilsTest</url-pattern>
+      </servlet-mapping>
+       <servlet-mapping>
+    <servlet-name>FileImg</servlet-name>
+    <url-pattern>/FileImg</url-pattern>
+      </servlet-mapping>
+        <servlet-mapping>
+    <servlet-name>ImgUtils</servlet-name>
+    <url-pattern>/ImgUtils</url-pattern>
       </servlet-mapping>
       <!-- dwr的servletmap，可以过滤，让action通过dwr的核心类 -->
         <servlet-mapping>

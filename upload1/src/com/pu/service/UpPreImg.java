@@ -28,45 +28,8 @@ import com.pu.pojo.Filepathinform;
  *
  */
 public class UpPreImg {
-	FilepathinformDAO filepathinformdao=new FilepathinformDAO();
 	
-	//将图片的名称保存到数据库
-	//在上传图片的时候读取图片名称，requst读取的图片名称含有后缀，去掉后缀后和数据库中的filename名称作对比，，如果存在的话就将图片名称存入到数据库preimgurl中去
-	 public void storeImg(String imgfilename){
-		 //.....
-		// String filename=null;
-		 
-		 String[] names = imgfilename.split("\\.");
-	     //System.out.println(names[0]);
-		 
-		 List<Filepathinform> list=filepathinformdao.findByFilename(names[0]);
-		 if(list != null && list.size() != 0){
-			 list.get(0).setPreimgurl(imgfilename);
-			 filepathinformdao.attachDirty(list.get(0));
-			 
-		 }else{
-			 //页面输入一个请您注意查看是否预览图的文件名称输入有问题。
-			 System.out.print("meiyoushujuku");
-			 
-		 }
-		 
-		 
-	 }
 	
-   //获取和数据库中filename相匹配的图片地址，返回保存在数据库中的预留图片地址
-	 public  String getPreImgurl(String filename){
-		 //......
-		 List<Filepathinform> list=filepathinformdao.findByFilename(filename);
-		 if(list != null && list.size() != 0){
-			return list.get(0).getPreimgurl();
-			 
-		 }else{
-			 //更具文件名查找到缩略图地址，如果没有缩略图，则输出默认的缩略图地址
-			 System.out.print("meiyoushujuku缩略图，默认图片显示缩略");
-			 return "img/pre.jpg";
-		 }
-		
-	 }
 	 
 	 
 	 /**
@@ -83,7 +46,7 @@ public class UpPreImg {
 		 * 
 		 * @return
 		 */
-		public static void uploadImg(HttpServletRequest request, String relativeUploadPath, int maxSize, int thresholdSize, String fileTypes) {
+		public  static void uploadImg(HttpServletRequest request, String relativeUploadPath, int maxSize, int thresholdSize, String fileTypes) {
 			// 设置字符编码
 			try {
 				request.setCharacterEncoding("UTF-8");
@@ -125,6 +88,24 @@ public class UpPreImg {
 					if (!item.isFormField()) { // 如果是文件
 						// 文件名
 						String fileName = item.getName().replace("\\", "/");
+						
+					    //判断是否数据库中有何图片名一样的数据库条，如果有则吧图片名称存入对应的数据库
+						//String imgname;
+						//FilepathinformDAO filepathinformdao=new FilepathinformDAO();
+						
+//						if(fileName.endsWith("jpg")){
+//							imgname=fileName.replaceAll(".jpg", "");
+//							imgnamesave.storeImg(imgname);
+//						}else if(fileName.endsWith("png")){
+//							
+//							imgname=fileName.replaceAll(".png", "");
+//							filepathinformdao.findByFilename(imgname);
+//						}else{
+//							
+//							imgname=fileName.replaceAll(".gif", "");
+//							filepathinformdao.findByFilename(imgname);
+//							
+//						}
 						//文件后缀名
 						String suffix = null;
 						if (fileName.lastIndexOf(".") > -1) {
@@ -144,9 +125,20 @@ public class UpPreImg {
 						if (fileTypes.indexOf(suffix.toLowerCase()) > -1) {
 							String uuid = UUID.randomUUID().toString();
 							SimpleDateFormat sf = new SimpleDateFormat("yyyyMMddHHmmss");
+							String imgname=sf.format(new Date())
+								  + uuid + SimpleFileName;
+							
+//							String absoluteFilePath = serverPath
+//									+ relativeUploadPath + sf.format(new Date())
+//									+ " " + uuid + " " + SimpleFileName;
 							String absoluteFilePath = serverPath
-									+ relativeUploadPath + sf.format(new Date())
-									+ " " + uuid + " " + SimpleFileName;
+									+ relativeUploadPath +imgname;
+							//用上传的文件名称做对比，如果图片名称和数据库中的filename相同，那么我们把这个图生成的文件名存入到数据库中去
+						
+							ImgNameSave imgnamesave=new ImgNameSave();
+							imgnamesave.storeImg(fileName,imgname);
+							
+							
 							item.write(new File(absoluteFilePath));
 							filePaths.add(absoluteFilePath);
 						} 
