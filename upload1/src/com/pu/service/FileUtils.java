@@ -21,6 +21,9 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import com.pu.dao.FilepathinformDAO;
+import com.pu.pojo.Filepathinform;
 /*
  * 功能：上传文件和下载文件的接口功能
  * 时间：2016年11月14日
@@ -36,18 +39,22 @@ public class FileUtils {
 	//, String relativeFilePath历史参数，已删除
 	public static List<String> download(HttpServletRequest request,
 			HttpServletResponse response) {
-		List<String> filezippath = new ArrayList<String>() ;
-		String serverPath = request.getSession().getServletContext().getRealPath("/").replace("\\", "/")+"upload";
+		List<String> fileurlpath = new ArrayList<String>() ;
+		String serverPath = FilePath.getFilelPath(request)+"/"+"upload"+"/";
+		//String serverPath = request.getSession().getServletContext().getRealPath("/").replace("\\", "/")+"upload";
 		//return GetFileList.getFileName(serverPath);
-		int j=GetFileList.getFileName(serverPath).size();
-		List<String> filenamelist=GetFileList.getFileName(serverPath);
+		//获取文件列表的名称
+		List<String> filenamelist=GetFileList.getFileName(FilePath.getZipFilePath(request));
+		
+		int j=filenamelist.size();
+		//List<String> filenamelist=GetFileList.getFileName(serverPath);
 		for(int i=0;i<j;i++){
 			String str=serverPath+filenamelist.get(i);
-			filezippath.add(str);
+			fileurlpath.add(str);
 			
 		}
 		
-		return filezippath;
+		return fileurlpath;
 		//System.out.print(GetFileList.getFileName(serverPath));
 		
 		
@@ -168,6 +175,20 @@ public class FileUtils {
 				if (!item.isFormField()) { // 如果是文件
 					// 文件名
 					String fileName = item.getName().replace("\\", "/");
+					System.out.print(fileName);
+				//以下为将文件名称包含后缀存入数据库
+					Filepathinform filepathinform=new Filepathinform();
+					//filepathinform.setFilepathzip(fileName);
+				//以下为将文件名称不包含后缀存入数据库
+					if(fileName.endsWith(".zip")){
+						filepathinform.setFilename(fileName.replaceAll(".zip", ""));
+						
+					}
+					else {
+						filepathinform.setFilename(fileName.replaceAll(".rar", ""));
+						
+					}
+			
 					//文件后缀名
 					String suffix = null;
 					if (fileName.lastIndexOf(".") > -1) {
@@ -188,9 +209,25 @@ public class FileUtils {
 					if (fileTypes.indexOf(suffix.toLowerCase()) > -1) {
 						String uuid = UUID.randomUUID().toString();
 						SimpleDateFormat sf = new SimpleDateFormat("yyyyMMddHHmmss");
+//						//String absoluteFilePath = serverPath
+//								+ relativeUploadPath + sf.format(new Date())
+//								+ " " + uuid + " " + SimpleFileName;
+						
+						//以下为将文件名称包含后缀存入数据库
+						String filepathzip=sf.format(new Date())
+							   + uuid  + SimpleFileName;
+//						String absoluteFilePath = serverPath
+//							+ relativeUploadPath + sf.format(new Date())
+//								+ " " + uuid + " " + SimpleFileName;
+//					
 						String absoluteFilePath = serverPath
-								+ relativeUploadPath + sf.format(new Date())
-								+ " " + uuid + " " + SimpleFileName;
+								+ relativeUploadPath + filepathzip;
+						//用javabean的方式设置压缩包的名称
+						filepathinform.setFilepathzip(filepathzip);
+						//保存对象到数据库中
+						FilepathinformDAO filepathinformdao=new FilepathinformDAO();
+						filepathinformdao.save(filepathinform);
+						
 						item.write(new File(absoluteFilePath));
 						filePaths.add(absoluteFilePath);
 						

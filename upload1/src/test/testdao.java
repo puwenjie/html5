@@ -22,20 +22,25 @@ public class testdao {
 //		System.out.print(finform.getFilename());
 //		FilepathinformDAO fileinf=new FilepathinformDAO();
 //		fileinf.save(finform);
-		 String filename="NIHAO12.jpg";
-		 String[] names = filename.split("\\.");
-	     System.out.println(names[0]);
-		 FilepathinformDAO filepathinformDAO=new FilepathinformDAO();
-		 List<Filepathinform> list=filepathinformDAO.findByFilename(names[0]);
-		// System.out.print(list.get(0).getFilename());
-		 if(list != null && list.size() != 0){
-			 list.get(0).setPreimgurl("img/pr.jpg");
-			 filepathinformDAO.attachDirty(list.get(0));
-			 
-		 }else{
-			 System.out.print("meiyoushujuku");
-			 
-		 }
+		
+//		 String filename="NIHAO12.jpg";
+//		 String[] names = filename.split("\\.");
+//	     System.out.println(names[0]);
+//		 FilepathinformDAO filepathinformDAO=new FilepathinformDAO();
+//		 List<Filepathinform> list=filepathinformDAO.findByFilename(names[0]);
+//		// System.out.print(list.get(0).getFilename());
+//		 if(list != null && list.size() != 0){
+//			 list.get(0).setPreimgurl("img/pr.jpg");
+//			 filepathinformDAO.attachDirty(list.get(0));
+//			 
+//		 }else{
+//			 System.out.print("meiyoushujuku");
+//			 
+//		 }
+//		
+		String imgfilename ="img.zip";
+		String[] names = imgfilename.split("\\.");
+		System.out.print(names[1]);
 		
 	}
 	}

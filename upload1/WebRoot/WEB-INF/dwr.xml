@@ -5,5 +5,8 @@
 <create creator="new" javascript="fileList">
 <param name="class" value="com.pu.service.GetFileList"></param>
 </create>
+<create creator="new" javascript="fileutils">
+<param name="class" value="com.pu.service.FileUtils"></param>
+</create>
  </allow>
 </dwr>
