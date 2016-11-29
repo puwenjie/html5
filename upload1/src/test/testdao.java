@@ -1,5 +1,6 @@
 package test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.set.ListOrderedSet;
@@ -38,9 +39,14 @@ public class testdao {
 //			 
 //		 }
 //		
-		String imgfilename ="img.zip";
-		String[] names = imgfilename.split("\\.");
-		System.out.print(names[1]);
+		
+		
+		
+		//String imgfilename ="img.zip";
+		//String[] names = imgfilename.split("\\.");
+		//System.out.print(list.get(3));
+		long curMs = (System.currentTimeMillis())/1000;
+		System.out.print(curMs);
 		
 	}
 	}

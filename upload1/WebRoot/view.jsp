@@ -7,42 +7,42 @@
 <head>
    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
  <script type="text/javascript">
-
-var xmlrequest;
-function createXMLHttpRequest(){
-
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+$(document).ready(function(){
+alert("nihao");
+$.ajax({
+    url:'FileImg',
+    type:'GET', //GET
+    async:true, 
+    dataType: 'json',     //或false,是否异步
+    timeout:5000,    //超时时间
+    
+    beforeSend:function(xhr){
+        console.log(xhr)
+      
+        console.log('发送前')
+    },
+    success:function(data){
+        console.log(data)
+      
+   alert(data);
+for(var p in data){
+    var str =data[p];
+       alert(p);
+       for(var obj in str){
+      
+       }
 }
- $(document).ready(function(){
- alert("hahahh");
- 
- createXMLHttpRequest();
- var uri="view.jsp"
- xmlrequest.open("POST",uri,true);
- xmlrequest.onreadystatechange=processResponse;
- xmlrequest.send(null);
- })
- 
- 
- function processResponse(){
- if(xmlrequest.readyState==4){
- if(xmlrequest.status==200){
- var text=xmlrequest.responseText;
- alert(text);
- }
- 
- }
- 
- 
- }
+        
   
+       
+      
+    }
+
+    
+    })
+
+})
+
   
   </script>
 </head>
