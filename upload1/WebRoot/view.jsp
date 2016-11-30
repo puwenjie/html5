@@ -24,13 +24,14 @@ $.ajax({
     success:function(data){
         console.log(data)
       
-   alert(data);
+   
 for(var p in data){
     var str =data[p];
-       alert(p);
-       for(var obj in str){
       
-       }
+        alert(str.fileName);
+        alert(str.urlName);
+        alert(str.filezip)
+      
 }
         
   

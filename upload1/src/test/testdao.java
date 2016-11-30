@@ -3,10 +3,13 @@ package test;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.json.JSONObject;
+
 import org.apache.commons.collections.set.ListOrderedSet;
 
 import com.pu.dao.FilepathinformDAO;
 import com.pu.dao.UserDAO;
+import com.pu.pojo.FileToUrl;
 import com.pu.pojo.Filepathinform;
 import com.pu.pojo.User;
 
@@ -45,8 +48,13 @@ public class testdao {
 		//String imgfilename ="img.zip";
 		//String[] names = imgfilename.split("\\.");
 		//System.out.print(list.get(3));
-		long curMs = (System.currentTimeMillis())/1000;
-		System.out.print(curMs);
-		
+//		long curMs = (System.currentTimeMillis())/1000;
+//		System.out.print(curMs);
+//		
+		FileToUrl filetourl=new FileToUrl();
+		filetourl.setFileName("hehe");
+		filetourl.setUrlName("hehessss");
+		JSONObject jsonObject = JSONObject.fromObject(filetourl);
+		System.out.print(jsonObject);
 	}
 	}

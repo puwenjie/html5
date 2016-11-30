@@ -167,10 +167,73 @@ font-weight: 600;
 
 <footer>这是页脚</footer>
     </body>
-
-
-
     <script type="text/javascript">
+$(document).ready(function(){
+
+$.ajax({
+    url:'FileImg',
+    type:'GET', //GET
+    async:true, 
+    dataType: 'json',     //或false,是否异步
+    timeout:5000,    //超时时间
+    
+    beforeSend:function(xhr){
+        console.log(xhr)
+      
+        console.log('发送前')
+    },
+    success:function(data){
+        console.log(data)
+      
+   var str1="";
+for(var p in data){
+    var str =data[p];
+      
+      //  alert(str.fileName);
+        //alert(str.urlName);
+       // alert(str.filezip);
+        
+     
+      
+         str1 = "<div class=\"thumbnail\"> <div class=\"caption capt"+p+"\"><p><h2> </h2></p><p><a  class=\"label label-primary biglabel\" rel=\"tooltip\">在线预览</a> <a  class=\"label label-info biglabel\" rel=\"tooltip\" >点击下载</a></p></div><img  class=\"imgurl"+p+"\"></div>";   
+        $(".precon").append(str1);
+       
+       // $(".capt"+p+" h2").attr("src",str.fileName);
+        $(".capt"+p+" h2").text(str.fileName);
+        $(".imgurl"+p).attr("src",str.urlName);
+        $(".label-info").attr("href",str.filezip);
+        // alert(str.urlName);
+       //  alert(str1);
+         // alert(".imgurl"+p);
+         $('[rel="tooltip"]').tooltip();
+
+
+/* 生成鼠标悬浮滑动展示图片说明 */
+
+
+$('.thumbnail').hover(
+  function(){
+    //鼠标进入
+    //$(this).find('.caption').slideDown(300);
+    $(this).find('.caption').fadeIn(300);
+  },
+  function(){
+    //鼠标离开
+    //$(this).find('.caption').slideUp(300);
+    $(this).find('.caption').fadeOut(300);
+  }
+);
+        
+      
+}                   
+    }
+        })
+
+})
+
+  
+  </script>
+      <script type="text/javascript">
 /* 生成工具提示 */
 
 
@@ -196,4 +259,5 @@ $('.thumbnail').hover(
 
 
     </script>
+  
 </html>
